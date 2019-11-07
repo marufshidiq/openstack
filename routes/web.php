@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/server', 'ServerController@show')->name('server.show');
+Route::get('/server/vnc/{id}', 'ServerController@vnc')->name('server.vnc');
