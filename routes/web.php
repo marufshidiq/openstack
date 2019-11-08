@@ -17,3 +17,6 @@ Route::get('/', function () {
 
 Route::get('/server', 'ServerController@show')->name('server.show');
 Route::get('/server/vnc/{id}', 'ServerController@vnc')->name('server.vnc');
+Auth::routes(['register' => false]);
+
+Route::get('/home', 'HomeController@index')->name('home');
