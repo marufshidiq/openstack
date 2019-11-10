@@ -21,6 +21,10 @@ Route::post('/server/create', 'ServerController@createServer')->name('server.cre
 Route::get('/server/delete/{id}', 'ServerController@delete')->name('server.delete');
 Route::get('/server/deleted/{id}', 'ServerController@deleted')->name('server.deleted');
 Route::get('/server/vnc/{id}', 'ServerController@vnc')->name('server.vnc');
+Route::get('/port', 'MikrotikController@show')->name('port.show');
+Route::get('/port/delete/{id}', 'MikrotikController@delete')->name('port.delete');
+Route::get('/port/create', 'MikrotikController@create')->name('port.create');
+Route::post('/port/create', 'MikrotikController@createPort')->name('port.create.post');
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');

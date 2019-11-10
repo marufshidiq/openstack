@@ -9,6 +9,7 @@
 
                 <div class="card-body">
                     <div class="table-responsive">
+                        <a href="{{route('home')}}">Home</a> |
                         <a href="{{route('server.create')}}">Create New Server</a>
                         <table class="table" id="server_list">
                             <thead>

@@ -28,6 +28,7 @@
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Create</button>
+                        <a href="{{route('server.show')}}" class="btn btn-danger">Back</a>
                     </form>
                 </div>
             </div>

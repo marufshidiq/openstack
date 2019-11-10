@@ -17,6 +17,8 @@
                     You are logged in!
                     <br>
                     <a href="{{route('server.show')}}">Server List</a>
+                    <br>
+                    <a href="{{route('port.show')}}">Port forwarding List</a>
                 </div>
             </div>
         </div>
