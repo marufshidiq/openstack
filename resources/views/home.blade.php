@@ -15,6 +15,8 @@
                     @endif
 
                     You are logged in!
+                    <br>
+                    <a href="{{route('server.show')}}">Server List</a>
                 </div>
             </div>
         </div>

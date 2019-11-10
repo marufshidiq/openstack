@@ -16,7 +16,10 @@ Route::get('/', function () {
 });
 
 Route::get('/server', 'ServerController@show')->name('server.show');
+Route::get('/server/create', 'ServerController@create')->name('server.create');
+Route::post('/server/create', 'ServerController@createServer')->name('server.create.post');
 Route::get('/server/vnc/{id}', 'ServerController@vnc')->name('server.vnc');
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin/synchronize', 'AdminController@synchronize')->name('admin.synchronize');
