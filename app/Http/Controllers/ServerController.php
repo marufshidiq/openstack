@@ -50,14 +50,41 @@ class ServerController extends Controller
 
         // Create the server
         $server = $this->compute->createServer($options);
-        // return "Oke";
         return redirect()->route('server.show');
+    }
+
+    public function delete($id)
+    {
+        $server = $this->compute->getServer(['id' => $id]);
+        $server->delete();
+        return redirect()->route('server.deleted', ['id' => $id]);
+    }
+
+    public function deleted($id)
+    {
+        $still_exist = $this->isServerExist($id);
+        if(!$still_exist){
+            return redirect()->route('server.show');
+        }
+        return view('server.deleted', compact('still_exist'));
     }
 
     public function vnc($id)
     {
+        $exist = $this->isServerExist($id);
+        if(!$exist){
+            return redirect()->route('home');
+        }
         $server = $this->compute->getServer(['id' => $id]);
+        $server->retrieve();
+
+        if (!preg_match('/^'.$this->getPrefix().'_/', $server->name))
+        {
+            return redirect()->route('home');
+        }
+
         $consoleURL = $server->getVncConsole()['url'];
+        $consoleURL = formatVNCURL($consoleURL);
         return view('server.vnc', compact('consoleURL'));
     }
 
@@ -68,8 +95,19 @@ class ServerController extends Controller
 
     public function formatServerName($name)
     {
-        $name = preg_replace("/[^A-Za-z0-9 ]/", '', $name);
+        $name = preg_replace("/[^A-Za-z0-9]/", '', $name);
         $name = $this->getPrefix()."_".$name;
         return $name;
+    }
+
+    public function isServerExist($id)
+    {
+        $servers = $this->compute->listServers(true);
+        foreach($servers as $server){
+            if($server->id == $id){
+                return true;
+            }
+        }
+        return false;
     }
 }

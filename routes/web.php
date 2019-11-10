@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::get('/server', 'ServerController@show')->name('server.show');
 Route::get('/server/create', 'ServerController@create')->name('server.create');
 Route::post('/server/create', 'ServerController@createServer')->name('server.create.post');
+Route::get('/server/delete/{id}', 'ServerController@delete')->name('server.delete');
+Route::get('/server/deleted/{id}', 'ServerController@deleted')->name('server.deleted');
 Route::get('/server/vnc/{id}', 'ServerController@vnc')->name('server.vnc');
 Auth::routes(['register' => false]);
 
